@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/TRON-CrowdFunding/static/js/main.9540fc57.chunk.js",
+    "main.js.map": "/TRON-CrowdFunding/static/js/main.9540fc57.chunk.js.map",
+    "runtime-main.js": "/TRON-CrowdFunding/static/js/runtime-main.2a40d49a.js",
+    "runtime-main.js.map": "/TRON-CrowdFunding/static/js/runtime-main.2a40d49a.js.map",
+    "static/js/2.b2a56c1e.chunk.js": "/TRON-CrowdFunding/static/js/2.b2a56c1e.chunk.js",
+    "static/js/2.b2a56c1e.chunk.js.map": "/TRON-CrowdFunding/static/js/2.b2a56c1e.chunk.js.map",
+    "index.html": "/TRON-CrowdFunding/index.html",
+    "precache-manifest.a83af788245aeee66b103d7e6c1ca0ac.js": "/TRON-CrowdFunding/precache-manifest.a83af788245aeee66b103d7e6c1ca0ac.js",
+    "service-worker.js": "/TRON-CrowdFunding/service-worker.js",
+    "static/js/2.b2a56c1e.chunk.js.LICENSE.txt": "/TRON-CrowdFunding/static/js/2.b2a56c1e.chunk.js.LICENSE.txt",
+    "static/media/TronLinkLogo.png": "/TRON-CrowdFunding/static/media/TronLinkLogo.d3a8f115.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2a40d49a.js",
+    "static/js/2.b2a56c1e.chunk.js",
+    "static/js/main.9540fc57.chunk.js"
+  ]
+}
