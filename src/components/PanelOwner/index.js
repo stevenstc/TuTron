@@ -12,7 +12,6 @@ export default class EarnTron extends Component {
       saldo: 0
     };
 
-    this.isOwner = this.isOwner.bind(this);
     this.pararRetiros = this.pararRetiros.bind(this);
     this.consultarSaldo = this.consultarSaldo.bind(this);
 
@@ -20,48 +19,9 @@ export default class EarnTron extends Component {
 
   async componentDidMount() {
     await Utils.setContract(window.tronWeb, contractAddress);
-
-    let si = await Utils.contract.Do().call();
-    if (si) {
-      this.setState({
-        retiros: "Deshabilitar retiros"
-      });
-    }else{
-      this.setState({
-        retiros: "Habilitar retiros"
-      });
-    }
-    
-    setInterval(() => this.isOwner(),1000);
     setInterval(() => this.consultarSaldo(),1000);
   };
 
-  async isOwner() {
-
-    let ownerContrato = await Utils.contract.owner().call();
-    ownerContrato = window.tronWeb.address.fromHex(ownerContrato);
-
-    let ownerTronlink = await window.tronWeb.trx.getAccount();
-    ownerTronlink = ownerTronlink.address;
-    ownerTronlink = window.tronWeb.address.fromHex(ownerTronlink);
-
-    //console.log(ownerContrato);
-    //console.log(ownerTronlink);
-
-    if (ownerContrato === ownerTronlink) {
-      this.setState({
-        isowner: true
-
-      });
-    }else{
-      this.setState({
-        isowner: false
-
-      });
-    }
-    
-
-  };
 
   async pararRetiros() {
 
@@ -93,7 +53,7 @@ export default class EarnTron extends Component {
 
   async consultarSaldo() {
 
-    let sal = await Utils.contract.InContract().call(); 
+    let sal = await Utils.contract.getContractBalance().call(); 
     sal = parseInt(sal._hex)/1000000;
     this.setState({
         saldo: sal

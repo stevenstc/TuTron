@@ -121,29 +121,12 @@ class App extends Component {
       );
 
     return (
-      <div>
-        <div>
-          <section id="why-us" className="wow fadeIn">
-            <div className="container">
-              <header className="section-header">
-                  <h3>Has tu inversión</h3>
-              </header>
-              <div  className="row row-eq-height justify-content-center">
-                <CrowdFunding />
-                <TronLinkInfo />
-                <PanelOwner />
-              </div>
-              <div >
-                <Datos />
-              </div>
-            </div>
-          </section>
-          
-          <section id="services" className="section-bg">
-            <Oficina /> 
-          </section>
-        </div>
-      </div>
+      <>
+              
+        <CrowdFunding />
+        <Oficina /> 
+
+      </>
       
 
 

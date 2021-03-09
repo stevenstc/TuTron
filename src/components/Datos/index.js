@@ -8,8 +8,8 @@ export default class EarnTron extends Component {
 
     this.state = {
       totalInvestors: 0,
-      totalInvested: 0,
-      totalRefRewards: 0
+      totalInvested: 0
+
     };
 
     this.totalInvestors = this.totalInvestors.bind(this);
@@ -22,19 +22,24 @@ export default class EarnTron extends Component {
 
   async totalInvestors() {
 
-    let esto = await Utils.contract.setstate().call();
-    //console.log(esto);
+    var totalUsers = await Utils.contract.totalUsers().call();
+    //console.log(totalUsers);
+
+    var totalInvested = await Utils.contract.totalInvested().call();
+    //console.log(totalInvested);
+
+
     this.setState({
-      totalInvestors: parseInt(esto.Investors._hex),
-      totalInvested: parseInt(esto.Invested._hex)/1000000,
-      totalRefRewards: parseInt(esto.RefRewards._hex)/1000000
+      totalInvestors: parseInt(totalUsers._hex),
+      totalInvested: parseInt(totalInvested._hex)/1000000,
+      
 
     });
 
   };
 
   render() {
-    const { totalInvestors, totalInvested, totalRefRewards } = this.state;
+    const { totalInvestors, totalInvested } = this.state;
 
     return (
       <div className="row counters">
@@ -49,10 +54,6 @@ export default class EarnTron extends Component {
           <p>Invertido Global</p>
         </div>
 
-        <div className="col-lg-4 col-12 text-center">
-          <span data-toggle="counter-up">{totalRefRewards} TRX</span>
-          <p>Recompensas  Globales Referidos</p>
-        </div>
 
       </div>
 

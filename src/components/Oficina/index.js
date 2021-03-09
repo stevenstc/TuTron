@@ -55,20 +55,25 @@ export default class EarnTron extends Component {
 
   async Investors() {
 
-    let direccion = await window.tronWeb.trx.getAccount();
-    let esto = await Utils.contract.investors(direccion.address).call();
-    let My = await Utils.contract.MYwithdrawable().call();
-    //console.log(esto);
-    //console.log(My);
+    var direccion = await window.tronWeb.trx.getAccount();
+
+    var getUserTotalWithdrawn = await Utils.contract.getUserTotalWithdrawn(direccion.address).call();
+
+    var getUserDividends = await Utils.contract.getUserDividends(direccion.address).call();
+
+    var getUserAvailable = await Utils.contract.getUserAvailable(direccion.address).call();
+
+    var getUserTotalDeposits = await Utils.contract.getUserTotalDeposits(direccion.address).call();
+
+    //console.log();
     this.setState({
       direccion: window.tronWeb.address.fromHex(direccion.address),
-      registered: esto.registered,
-      balanceRef: parseInt(esto.balanceRef._hex)/1000000,
-      totalRef: parseInt(esto.totalRef._hex)/1000000,
-      invested: parseInt(esto.invested._hex)/1000000,
-      paidAt: parseInt(esto.paidAt._hex)/1000000,
-      my: parseInt(My.amount._hex)/1000000,
-      withdrawn: parseInt(esto.withdrawn._hex)/1000000
+      registered: getUserTotalWithdrawn.registered,
+      balanceRef: parseInt(getUserTotalWithdrawn._hex)/1000000,
+      totalRef: parseInt(getUserTotalWithdrawn._hex)/1000000,
+      invested: parseInt(getUserTotalDeposits._hex)/1000000,
+      my: parseInt(getUserAvailable._hex)/1000000,
+      withdrawn: parseInt(getUserTotalWithdrawn._hex)/1000000
     });
 
   };
@@ -82,76 +87,53 @@ export default class EarnTron extends Component {
     const { balanceRef, totalRef, invested,  withdrawn , my, direccion, link} = this.state;
 
     return (
+    <div id="request">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-12">
+                    <div className="text-container" style={{'color': '#39ef09','textAlign': 'center'}}>
+
+                        <h1 style={{'color': '#edf2eb#'}}>{invested} TRX IN MY INVESTMENTS</h1>
+                       <div className="row">
+
+                                <div className="col-md-6" style={{'border': 'dashed','borderRight': 'none','paddingTop': '30px','paddingBottom': '30px','fontSize': '1.2rem'}}>
+                                    <h3><i className="fas fa-coins"></i>Dividends</h3>
+                                <p id="wal"></p>
+                                    <br />Earning of referrals
+                                    <br /><b id="availableReferrerEarnings">0.00</b> TRX
+                                    <br /><br />With (earning of referrals included).
+                                    <br /><b id="withdrawable">{my}</b> TRX
+                                    <br /><a href="javascript:void(0)" className="button-link-1 pushtop-30" id="withdrawButton">WITHDRAWAL</a>
+                                    <br />
+                                    <div>
+                                    You must have at least 20-40 TRX for the transaction fee.
+                                    </div>
+                                    <br />
+                                    Total invested <b className="totalInvestment" >{invested}</b> TRX
+                                    <br />
+                                    Dividends withdrawn <b className="totalDivs" >{withdrawn}</b> TRX
+                                </div>
+
+                                <div className="col-md-6" style={{'border': 'dashed','paddingTop': '30px','paddingBottom': '30px', 'fontSize': '1.2rem'}}>
+                                    <h3><i className="fas fa-user-friends"></i>Referral program</h3>
+                                    <br />Your referral link [<a onClick="copiarAlPortapapeles('yourRefLink')" style={{'cursor': 'pointer', 'color': 'orange'}}>copy link</a>]
+                                    <div id="reflink" style={{'fontWeight':'bold'}}></div>
+                                    <br />1  Referral （5% de gain） - <b id="level1RefCount">0</b>
+                                    <br />2  Referral （3% de gain） - <b id="level2RefCount">0</b>
+                                    <br />3 Referral （1% de gain） - <b id="level3RefCount">0</b>
+                                    <br />4 Referral （1% de gain） - <b id="level3RefCount">0</b>
+
+                                    <br />Total earnings of paid referrals - <b id="referrerEarnings">0.00</b> TRX
+                                    
+                                </div>
+                            </div>
+                    </div>
+                </div> 
+            </div> 
+        </div> 
+    </div>
+
       
-      <div className="container">
-
-        <header style={{'text-align': 'center'}} className="section-header">
-          <h3 className="white"><span style={{'font-weight': 'bold'}}>
-          Mi Oficina:</span> <br></br>
-          <span style={{'font-size': '18px'}}>{direccion}</span></h3><br></br>
-          <h3 className="white" style={{'font-weight': 'bold'}}>Link de referido:</h3>
-          <h6 className="white" ><a href={link}>{link}</a>&nbsp;
-          <CopyToClipboard text={link}>
-            <button type="button" className="btn btn-info">COPIAR</button>
-          </CopyToClipboard>
-          </h6>
-          <hr></hr>
-          
-        </header>
-
-        <div className="row">
-
-          <div className="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
-            <div className="box">
-              <div className="icon"><i className="ion-ios-analytics-outline" style={{color: '#ff689b'}}></i></div>
-              <h4 className="title"><a href="#services">{invested} TRX</a></h4>
-              <p className="description">Total invertido</p>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
-            <div className="box">
-              <div className="icon"><i className="ion-ios-bookmarks-outline" style={{color: '#e9bf06'}}></i></div>
-              <h4 className="title"><a href="#services">{totalRef} TRX</a></h4>
-              <p className="description">Total ganancias por referidos</p>
-            </div>
-          </div>
-
-          <div className="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div className="box">
-              <div className="icon"><i className="ion-ios-paper-outline" style={{color: '#3fcdc7'}}></i></div>
-              <p className="description">Mi balance</p>
-              <h4 className="title"><a href="#services">{my} TRX</a></h4>
-              
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div className="box">
-              <div className="icon"><i className="ion-ios-paper-outline" style={{color: '#3fcdc7'}}></i></div>
-              <p className="description">Balance por referidos</p>
-              <h4 className="title"><a href="#services"> {balanceRef} TRX</a></h4>
-              
-            </div>
-          </div>
-
-          <div className="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div className="box">
-              <div className="icon"><i className="ion-ios-speedometer-outline" style={{color:'#41cf2e'}}></i></div>
-              <h4 className="title"><a href="#services">Disponible</a></h4>
-              <p className="description">{balanceRef+my} TRX <button type="button" className="btn btn-info" onClick={() => this.withdraw()}>Retirar</button></p>
-            </div>
-          </div>
-          <div className="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
-            <div className="box">
-              <div className="icon"><i className="ion-ios-clock-outline" style={{color: '#4680ff'}}></i></div>
-              <h4 className="title"><a href="#services">Retirado</a></h4>
-              <p className="description">{withdrawn} TRX</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    
 
 
 
