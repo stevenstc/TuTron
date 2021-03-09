@@ -2,24 +2,66 @@ import React, { Component } from "react";
 import Utils from "../../utils";
 import contractAddress from "../Contract";
 
+const wallet = "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb";
+
 export default class EarnTron extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       totalInvestors: 0,
-      totalInvested: 0
+      totalInvested: 0,
+      sponsor: "Loading..."
 
     };
 
     this.deposit = this.deposit.bind(this);
     this.totalInvestors = this.totalInvestors.bind(this);
+    this.refer = this.refer.bind(this);
 
   }
 
   async componentDidMount() {
     await Utils.setContract(window.tronWeb, contractAddress);
     setInterval(() => this.totalInvestors(),1*1000);
+    setInterval(() => this.refer(),1*1000);
+  };
+
+  async refer() {
+
+    var loc = document.location.href;
+    if(loc.indexOf('?')>0){
+        var getString = loc.split('?')[1];
+        var GET = getString.split('&');
+        var get = {};
+        for(var i = 0, l = GET.length; i < l; i++){
+            var tmp = GET[i].split('=');
+            get[tmp[0]] = unescape(decodeURI(tmp[1]));
+        }
+        
+        if (get['ref'].length === 34) {
+
+          this.setState({
+            sponsor: get['ref']
+          });
+
+        
+        }else{
+
+           this.setState({
+            sponsor: wallet
+          });
+
+        }
+        
+        
+    }else{
+
+       this.setState({
+          sponsor: wallet
+        });
+
+    }
   };
 
 
@@ -40,13 +82,13 @@ export default class EarnTron extends Component {
           document.getElementById('sponsor').value = get['ref'];            
         }else{
 
-           document.getElementById('sponsor').value = 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb';
+           document.getElementById('sponsor').value = wallet;
         }
         
         
     }else{
 
-        document.getElementById('sponsor').value = 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb'; 
+        document.getElementById('sponsor').value = wallet; 
     }
 
     let amount = document.getElementById("amount").value;
@@ -81,7 +123,7 @@ export default class EarnTron extends Component {
 
   render() {
 
-    const { totalInvestors, totalInvested } = this.state;
+    const { totalInvestors, totalInvested, sponsor } = this.state;
     
     return (
 
@@ -141,7 +183,7 @@ export default class EarnTron extends Component {
                             <div>
 
                                 <label>
-                                    <div id="patro">you sponsor is TZG3PR8idZ1vTmCJxgAPE6cZc9gvdN1QQV</div>
+                                    <div id="patro">Your sponsor is {sponsor}</div>
                                 </label>
                                 <input type="number" className="form-control" id="amount" placeholder="Min. 200 TRX" style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
 

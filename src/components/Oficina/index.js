@@ -10,7 +10,6 @@ export default class EarnTron extends Component {
     this.state = {
       direccion: "",
       link: "Haz una inversión para obtener el LINK de referido",
-      registered: false,
       balanceRef: 0,
       totalRef: 0,
       invested: 0,
@@ -32,15 +31,20 @@ export default class EarnTron extends Component {
   };
 
   async Link() {
-    const {registered} = this.state;
+
+    var mydireccion = await window.tronWeb.trx.getAccount();
+    mydireccion = window.tronWeb.address.fromHex(mydireccion.address)
+
+    var registered = await Utils.contract.isActive(mydireccion).call();
+    //console.log(registered);
+
     if(registered){
 
       let loc = document.location.href;
       if(loc.indexOf('?')>0){
         loc = loc.split('?')[0]
       }
-      let mydireccion = await window.tronWeb.trx.getAccount();
-      mydireccion = window.tronWeb.address.fromHex(mydireccion.address)
+      
       mydireccion = loc+'?ref='+mydireccion;
       this.setState({
         link: mydireccion,
@@ -51,6 +55,7 @@ export default class EarnTron extends Component {
       });
     }
   }
+
     
 
   async Investors() {
@@ -86,7 +91,7 @@ export default class EarnTron extends Component {
 
 
   render() {
-    const { balanceRef, totalRef, invested,  withdrawn , my, direccion, link} = this.state;
+    const { balanceRef, totalRef, invested,  withdrawn , my, direccion, link, sponsor } = this.state;
 
     return (
     <div id="request">
