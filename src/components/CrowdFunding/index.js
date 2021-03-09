@@ -149,7 +149,7 @@ export default class EarnTron extends Component {
                                     Deposit fee 20-50 TRX.
                                 </label>
                             </div>
-                            <div className="button-wrapper" onClick={() => this.deposit()} style={{'cursor': 'cell'}}>
+                            <div className="button-wrapper" onClick={() => this.deposit()} style={{'cursor': 'pointer'}}>
                                 <a className="btn-solid-reg page-scroll" style={{'color':'#f7f4f4'}}>INVESTIMENT</a>
                             </div>
 

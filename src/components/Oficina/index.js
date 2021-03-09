@@ -65,11 +65,13 @@ export default class EarnTron extends Component {
 
     var getUserTotalDeposits = await Utils.contract.getUserTotalDeposits(direccion.address).call();
 
+    var getUserReferralBonus = await Utils.contract.getUserReferralBonus(direccion.address).call();
+
     //console.log();
     this.setState({
       direccion: window.tronWeb.address.fromHex(direccion.address),
       registered: getUserTotalWithdrawn.registered,
-      balanceRef: parseInt(getUserTotalWithdrawn._hex)/1000000,
+      balanceRef: parseInt(getUserReferralBonus._hex)/1000000,
       totalRef: parseInt(getUserTotalWithdrawn._hex)/1000000,
       invested: parseInt(getUserTotalDeposits._hex)/1000000,
       my: parseInt(getUserAvailable._hex)/1000000,
@@ -100,13 +102,15 @@ export default class EarnTron extends Component {
                                     <h3><i className="fas fa-coins"></i>Dividends</h3>
                                 <p id="wal"></p>
                                     <br />Earning of referrals
-                                    <br /><b id="availableReferrerEarnings">0.00</b> TRX
+                                    <br /><b id="availableReferrerEarnings">{balanceRef}</b> TRX
                                     <br /><br />With (earning of referrals included).
                                     <br /><b id="withdrawable">{my}</b> TRX
-                                    <br /><a href="javascript:void(0)" className="button-link-1 pushtop-30" id="withdrawButton">WITHDRAWAL</a>
+                                    <br />
+                                    <br /><a href="#request" className="button-link-1 pushtop-30" onClick={( ) => this.withdraw()}>WITHDRAWAL</a>
+                                    <br />
                                     <br />
                                     <div>
-                                    You must have at least 20-40 TRX for the transaction fee.
+                                      You must have at least 20-40 TRX for the transaction fee.
                                     </div>
                                     <br />
                                     Total invested <b className="totalInvestment" >{invested}</b> TRX
@@ -116,14 +120,18 @@ export default class EarnTron extends Component {
 
                                 <div className="col-md-6" style={{'border': 'dashed','paddingTop': '30px','paddingBottom': '30px', 'fontSize': '1.2rem'}}>
                                     <h3><i className="fas fa-user-friends"></i>Referral program</h3>
-                                    <br />Your referral link [<a onClick="copiarAlPortapapeles('yourRefLink')" style={{'cursor': 'pointer', 'color': 'orange'}}>copy link</a>]
+                                    
+                                    <br />Your referral link [
+                                    <CopyToClipboard text={link}>
+                                      <a style={{'cursor': 'pointer', 'color': 'orange'}}>Copy link</a>
+                                    </CopyToClipboard>]
                                     <div id="reflink" style={{'fontWeight':'bold'}}></div>
-                                    <br />1  Referral （5% de gain） - <b id="level1RefCount">0</b>
-                                    <br />2  Referral （3% de gain） - <b id="level2RefCount">0</b>
-                                    <br />3 Referral （1% de gain） - <b id="level3RefCount">0</b>
-                                    <br />4 Referral （1% de gain） - <b id="level3RefCount">0</b>
-
-                                    <br />Total earnings of paid referrals - <b id="referrerEarnings">0.00</b> TRX
+                                    <br />1  Referral （5% de gain） - <b >{balanceRef*0.5}</b>
+                                    <br />2  Referral （3% de gain） - <b >{balanceRef*0.3}</b>
+                                    <br />3 Referral （1% de gain） - <b >{balanceRef*0.1}</b>
+                                    <br />4 Referral （1% de gain） - <b >{balanceRef*0.1}</b>
+                                    <br />
+                                    <br />Total earnings of paid referrals - <b id="referrerEarnings">{balanceRef}</b> TRX
                                     
                                 </div>
                             </div>

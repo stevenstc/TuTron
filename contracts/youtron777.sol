@@ -6,7 +6,7 @@ contract youtron777 {
     uint256 constant public INVEST_MIN_AMOUNT = 200 trx;
     uint256 constant public BASE_PERCENT = 100;
     uint256 constant public RETI_MIN = 70 trx;
-    uint256[] public REFERRAL_PERCENTS = [500, 300, 100];
+    uint256[] public REFERRAL_PERCENTS = [500, 300, 100, 100];
     uint256 constant public PERCENTS_INCREMENT = 7;
     uint256 constant public PERCENTS_DIVIDER = 10000;
     uint256 constant public CONTRACT_BALANCE_STEP = 700000 trx;
@@ -55,7 +55,7 @@ contract youtron777 {
         if (user.referrer != address(0)) {
 
             address upline = user.referrer;
-            for (uint256 i = 0; i < 3; i++) {
+            for (uint256 i = 0; i < 4; i++) {
                 if (upline != address(0)) {
                     uint256 amount = msg.value.mul(REFERRAL_PERCENTS[i]).div(PERCENTS_DIVIDER);
                     users[upline].bonus = users[upline].bonus.add(amount);

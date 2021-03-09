@@ -3,12 +3,8 @@ import TronWeb from "tronweb";
 
 import Utils from "../../utils";
 import CrowdFunding from "../CrowdFunding";
-import Datos from "../Datos";
 import Oficina from "../Oficina";
-import TronLinkInfo from "../TronLinkInfo";
 import TronLinkGuide from "../TronLinkGuide";
-import PanelOwner from "../PanelOwner";
-
 
 const FOUNDATION_ADDRESS = "TWiWt5SEDzaEqS6kE5gandWMNfxR2B5xzg";
 
