@@ -192,7 +192,7 @@ export default class EarnTron extends Component {
                                 </label>
                             </div>
                             <div className="button-wrapper" onClick={() => this.deposit()} style={{'cursor': 'pointer'}}>
-                                <a className="btn-solid-reg page-scroll" style={{'color':'#f7f4f4'}}>INVESTIMENT</a>
+                                <a href="#pricing" className="btn-solid-reg page-scroll" style={{'color':'#f7f4f4'}}>INVESTIMENT</a>
                             </div>
 
                         </div>

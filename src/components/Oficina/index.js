@@ -75,9 +75,8 @@ export default class EarnTron extends Component {
     //console.log();
     this.setState({
       direccion: window.tronWeb.address.fromHex(direccion.address),
-      registered: getUserTotalWithdrawn.registered,
       balanceRef: parseInt(getUserReferralBonus._hex)/1000000,
-      totalRef: parseInt(getUserTotalWithdrawn._hex)/1000000,
+      totalRef: parseInt(getUserDividends._hex)/1000000,
       invested: parseInt(getUserTotalDeposits._hex)/1000000,
       my: parseInt(getUserAvailable._hex)/1000000,
       withdrawn: parseInt(getUserTotalWithdrawn._hex)/1000000
