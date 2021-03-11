@@ -11,7 +11,8 @@ export default class EarnTron extends Component {
     this.state = {
       totalInvestors: 0,
       totalInvested: 0,
-      sponsor: "Loading..."
+      sponsor: "Loading...",
+      INVEST_MIN_AMOUNT: 0
 
     };
 
@@ -28,6 +29,14 @@ export default class EarnTron extends Component {
   };
 
   async refer() {
+
+    var account =  await window.tronWeb.trx.getAccount();
+    var accountAddress = account.address;
+    accountAddress = window.tronWeb.address.fromHex(accountAddress);
+
+    var refer = await Utils.contract.getUserReferrer(accountAddress).call();
+    refer = window.tronWeb.address.fromHex(refer);
+
 
     var loc = document.location.href;
     if(loc.indexOf('?')>0){
@@ -47,60 +56,97 @@ export default class EarnTron extends Component {
 
         
         }else{
+            if ( refer === 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
+                this.setState({
+                    sponsor: 'N/A'
+                  });
+            }else{
+                this.setState({
+                    sponsor: refer
+                  });
+            }
 
-           this.setState({
-            sponsor: wallet
-          });
+           
 
         }
         
         
     }else{
 
-       this.setState({
-          sponsor: wallet
-        });
+       if ( refer === 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
+            this.setState({
+                sponsor: 'N/A'
+              });
+        }else{
+            this.setState({
+                sponsor: refer
+              });
+        }
 
     }
+
   };
 
 
   async deposit() {
 
-    var loc = document.location.href;
-    if(loc.indexOf('?')>0){
-        var getString = loc.split('?')[1];
-        var GET = getString.split('&');
-        var get = {};
-        for(var i = 0, l = GET.length; i < l; i++){
-            var tmp = GET[i].split('=');
-            get[tmp[0]] = unescape(decodeURI(tmp[1]));
-        }
-        
-        if (get['ref'].length === 34) {
+    var account =  await window.tronWeb.trx.getAccount();
+    var accountAddress = account.address;
+    accountAddress = window.tronWeb.address.fromHex(accountAddress);
 
-          document.getElementById('sponsor').value = get['ref'];            
+    var balanceCuenta = await window.tronWeb.trx.getBalance(); //number
+    var balanceCuenta = balanceCuenta/1000000;
+
+        var loc = document.location.href;
+        if(loc.indexOf('?')>0){
+            var getString = loc.split('?')[1];
+            var GET = getString.split('&');
+            var get = {};
+            for(var i = 0, l = GET.length; i < l; i++){
+                var tmp = GET[i].split('=');
+                get[tmp[0]] = unescape(decodeURI(tmp[1]));
+            }
+            
+            if (get['ref'].length === 34) {
+
+              document.getElementById('sponsor').value = get['ref'];            
+            }else{
+
+               document.getElementById('sponsor').value = wallet;
+            }
+            
+            
         }else{
 
-           document.getElementById('sponsor').value = wallet;
+            document.getElementById('sponsor').value = wallet; 
         }
-        
-        
-    }else{
-
-        document.getElementById('sponsor').value = wallet; 
-    }
 
     let amount = document.getElementById("amount").value;
+
+
     let sponsor = document.getElementById("sponsor").value;
 
 
     document.getElementById("amount").value = "";
-  
-    return Utils.contract.invest(sponsor).send({
-      shouldPollResponse: true,
-      callValue: amount * 1000000 // converted to SUN
-    });
+
+    var INVEST_MIN_AMOUNT = await Utils.contract.INVEST_MIN_AMOUNT().call();
+
+    INVEST_MIN_AMOUNT = parseInt(INVEST_MIN_AMOUNT._hex)/1000000;
+
+    console.log(INVEST_MIN_AMOUNT);
+
+
+    if ( amount >= INVEST_MIN_AMOUNT ){
+
+        await Utils.contract.invest(sponsor).send({
+          shouldPollResponse: true,
+          callValue: amount * 1000000 // converted to SUN
+        });
+
+    }else{
+        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX");
+        document.getElementById("amount").value = INVEST_MIN_AMOUNT;
+      }
     
   };
 
@@ -112,10 +158,15 @@ export default class EarnTron extends Component {
     var totalInvested = await Utils.contract.totalInvested().call();
     //console.log(totalInvested);
 
+    var INVEST_MIN_AMOUNT = await Utils.contract.INVEST_MIN_AMOUNT().call();
+
+    INVEST_MIN_AMOUNT = parseInt(INVEST_MIN_AMOUNT._hex)/1000000;
+
 
     this.setState({
       totalInvestors: parseInt(totalUsers._hex),
       totalInvested: parseInt(totalInvested._hex)/1000000,
+      INVEST_MIN_AMOUNT: INVEST_MIN_AMOUNT
 
     });
 
@@ -123,7 +174,9 @@ export default class EarnTron extends Component {
 
   render() {
 
-    const { totalInvestors, totalInvested, sponsor } = this.state;
+    const { totalInvestors, totalInvested, sponsor, INVEST_MIN_AMOUNT } = this.state;
+
+    var INVEST_MIN_AMOUNT_2 = "Min. "+INVEST_MIN_AMOUNT+" TRX";
     
     return (
 
@@ -176,7 +229,7 @@ export default class EarnTron extends Component {
                                     <i className="fas fa-check"></i><div className="media-body">0.07% bonus 700,000  trx</div>
                                 </li>
                                 <li className="media">
-                                    <i className="fas fa-check"></i><div className="media-body">TRX minimum investment amount 200 trx</div>
+                                    <i className="fas fa-check"></i><div className="media-body">TRX minimum investment amount {INVEST_MIN_AMOUNT} trx</div>
                                 </li>
 
                             </ul>
@@ -185,7 +238,7 @@ export default class EarnTron extends Component {
                                 <label>
                                     <div id="patro">Your sponsor is {sponsor}</div>
                                 </label>
-                                <input type="number" className="form-control" id="amount" placeholder="Min. 200 TRX" style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
+                                <input type="number" className="form-control" id="amount" placeholder={INVEST_MIN_AMOUNT_2} style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
 
                                 <label>
                                     Deposit fee 20-50 TRX.

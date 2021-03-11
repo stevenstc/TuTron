@@ -85,7 +85,19 @@ export default class EarnTron extends Component {
   };
 
   async withdraw(){
-    await Utils.contract.withdraw().send()
+
+    const { my } = this.state;
+
+    var RETI_MIN = await Utils.contract.RETI_MIN().call();
+
+    RETI_MIN = parseInt(RETI_MIN._hex)/1000000;
+
+    if ( my >= RETI_MIN ) {
+      await Utils.contract.withdrawl().send();
+    }else{
+      window.alert("El minimo de retiro es "+RETI_MIN+" TRX");
+    }
+    
   };
 
 
@@ -103,11 +115,11 @@ export default class EarnTron extends Component {
                        <div className="row">
 
                                 <div className="col-md-6" style={{'border': 'dashed','borderRight': 'none','paddingTop': '30px','paddingBottom': '30px','fontSize': '1.2rem'}}>
-                                    <h3><i className="fas fa-coins"></i>Dividends</h3>
+                                    <h3><i className="fas fa-coins"></i>Dividends <br />{totalRef} TRX</h3>
                                 <p id="wal"></p>
                                     <br />Earning of referrals
                                     <br /><b id="availableReferrerEarnings">{balanceRef}</b> TRX
-                                    <br /><br />With (earning of referrals included).
+                                    <br /><br />withdrawable <br />(earning of referrals included).
                                     <br /><b id="withdrawable">{my}</b> TRX
                                     <br />
                                     <br /><a href="#request" className="button-link-1 pushtop-30" onClick={( ) => this.withdraw()}>WITHDRAWAL</a>
@@ -130,10 +142,10 @@ export default class EarnTron extends Component {
                                       <a style={{'cursor': 'pointer', 'color': 'orange'}}>Copy link</a>
                                     </CopyToClipboard>]
                                     <div id="reflink" style={{'fontWeight':'bold'}}></div>
-                                    <br />1  Referral （5% de gain） - <b >{balanceRef*0.5}</b>
-                                    <br />2  Referral （3% de gain） - <b >{balanceRef*0.3}</b>
-                                    <br />3 Referral （1% de gain） - <b >{balanceRef*0.1}</b>
-                                    <br />4 Referral （1% de gain） - <b >{balanceRef*0.1}</b>
+                                    <br />1  Referral （5% de gain） - <b >{parseFloat((balanceRef*0.5).toFixed(6))}</b>
+                                    <br />2  Referral （3% de gain） - <b >{parseFloat((balanceRef*0.3).toFixed(6))}</b>
+                                    <br />3 Referral （1% de gain） - <b >{parseFloat((balanceRef*0.1).toFixed(6))}</b>
+                                    <br />4 Referral （1% de gain） - <b >{parseFloat((balanceRef*0.1).toFixed(6))}</b>
                                     <br />
                                     <br />Total earnings of paid referrals - <b id="referrerEarnings">{balanceRef}</b> TRX
                                     
