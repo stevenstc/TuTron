@@ -44,7 +44,7 @@ export default class EarnTron extends Component {
       if(loc.indexOf('?')>0){
         loc = loc.split('?')[0]
       }
-      
+
       mydireccion = loc+'?ref='+mydireccion;
       this.setState({
         link: mydireccion,
@@ -56,7 +56,7 @@ export default class EarnTron extends Component {
     }
   }
 
-    
+
 
   async Investors() {
 
@@ -97,12 +97,12 @@ export default class EarnTron extends Component {
     }else{
       window.alert("El minimo de retiro es "+RETI_MIN+" TRX");
     }
-    
+
   };
 
 
   render() {
-    const { balanceRef, totalRef, invested,  withdrawn , my, direccion, link, sponsor } = this.state;
+    const { balanceRef, totalRef, invested,  withdrawn , my, link } = this.state;
 
     return (
     <div id="request">
@@ -135,29 +135,31 @@ export default class EarnTron extends Component {
                                 </div>
 
                                 <div className="col-md-6" style={{'border': 'dashed','paddingTop': '30px','paddingBottom': '30px', 'fontSize': '1.2rem'}}>
-                                    <h3><i className="fas fa-user-friends"></i>Referral program</h3>
-                                    
+                                    <h3><i className="fas fa-user-friends"></i>Referral program <br />{balanceRef} TRX</h3>
+
                                     <br />Your referral link [
                                     <CopyToClipboard text={link}>
-                                      <a style={{'cursor': 'pointer', 'color': 'orange'}}>Copy link</a>
+                                      <a href="#request" style={{'cursor': 'pointer', 'color': 'orange'}}>Copy link</a>
                                     </CopyToClipboard>]
+                                    <br /> 
+                                    <br /> {link}
                                     <div id="reflink" style={{'fontWeight':'bold'}}></div>
                                     <br />1  Referral （5% de gain） - <b >{parseFloat((balanceRef*0.5).toFixed(6))}</b>
                                     <br />2  Referral （3% de gain） - <b >{parseFloat((balanceRef*0.3).toFixed(6))}</b>
                                     <br />3 Referral （1% de gain） - <b >{parseFloat((balanceRef*0.1).toFixed(6))}</b>
-                                    <br />4 Referral （1% de gain） - <b >{parseFloat((balanceRef*0.1).toFixed(6))}</b>
+
                                     <br />
                                     <br />Total earnings of paid referrals - <b id="referrerEarnings">{balanceRef}</b> TRX
-                                    
+
                                 </div>
                             </div>
                     </div>
-                </div> 
-            </div> 
-        </div> 
+                </div>
+            </div>
+        </div>
     </div>
 
-      
+
 
 
 

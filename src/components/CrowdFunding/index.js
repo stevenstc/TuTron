@@ -37,52 +37,47 @@ export default class EarnTron extends Component {
     var refer = await Utils.contract.getUserReferrer(accountAddress).call();
     refer = window.tronWeb.address.fromHex(refer);
 
+    if ( refer === 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
+         this.setState({
+             sponsor: 'N/A'
+           });
 
-    var loc = document.location.href;
-    if(loc.indexOf('?')>0){
-        var getString = loc.split('?')[1];
-        var GET = getString.split('&');
-        var get = {};
-        for(var i = 0, l = GET.length; i < l; i++){
-            var tmp = GET[i].split('=');
-            get[tmp[0]] = unescape(decodeURI(tmp[1]));
-        }
-        
-        if (get['ref'].length === 34) {
+      var loc = document.location.href;
+      if(loc.indexOf('?')>0){
+          var getString = loc.split('?')[1];
+          var GET = getString.split('&');
+          var get = {};
+          for(var i = 0, l = GET.length; i < l; i++){
+              var tmp = GET[i].split('=');
+              get[tmp[0]] = unescape(decodeURI(tmp[1]));
+          }
 
-          this.setState({
-            sponsor: get['ref']
-          });
+          if (window.tronWeb.isAddress(get['ref'])) {
 
-        
-        }else{
-            if ( refer === 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
-                this.setState({
-                    sponsor: 'N/A'
-                  });
-            }else{
-                this.setState({
-                    sponsor: refer
-                  });
-            }
+            this.setState({
+              sponsor: get['ref']
+            });
 
-           
 
-        }
-        
-        
+          }else{
+              if ( refer === 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
+                  this.setState({
+                      sponsor: 'N/A'
+                    });
+              }else{
+                  this.setState({
+                      sponsor: refer
+                    });
+              }
+
+          }
+
+      }
+
     }else{
-
-       if ( refer === 'T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb') {
-            this.setState({
-                sponsor: 'N/A'
-              });
-        }else{
-            this.setState({
-                sponsor: refer
-              });
-        }
-
+        this.setState({
+            sponsor: refer
+          });
     }
 
   };
@@ -90,12 +85,8 @@ export default class EarnTron extends Component {
 
   async deposit() {
 
-    var account =  await window.tronWeb.trx.getAccount();
-    var accountAddress = account.address;
-    accountAddress = window.tronWeb.address.fromHex(accountAddress);
-
     var balanceCuenta = await window.tronWeb.trx.getBalance(); //number
-    var balanceCuenta = balanceCuenta/1000000;
+    balanceCuenta = balanceCuenta/1000000;
 
         var loc = document.location.href;
         if(loc.indexOf('?')>0){
@@ -106,24 +97,22 @@ export default class EarnTron extends Component {
                 var tmp = GET[i].split('=');
                 get[tmp[0]] = unescape(decodeURI(tmp[1]));
             }
-            
+
             if (get['ref'].length === 34) {
 
-              document.getElementById('sponsor').value = get['ref'];            
+              document.getElementById('sponsor').value = get['ref'];
             }else{
 
                document.getElementById('sponsor').value = wallet;
             }
-            
-            
+
+
         }else{
 
-            document.getElementById('sponsor').value = wallet; 
+            document.getElementById('sponsor').value = wallet;
         }
 
     let amount = document.getElementById("amount").value;
-
-
     let sponsor = document.getElementById("sponsor").value;
 
 
@@ -136,7 +125,7 @@ export default class EarnTron extends Component {
     console.log(INVEST_MIN_AMOUNT);
 
 
-    if ( amount >= INVEST_MIN_AMOUNT ){
+    if ( amount >= INVEST_MIN_AMOUNT && balanceCuenta >= amount+40 ){
 
         await Utils.contract.invest(sponsor).send({
           shouldPollResponse: true,
@@ -144,10 +133,10 @@ export default class EarnTron extends Component {
         });
 
     }else{
-        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX");
+        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicinal a esto recuerda dejar 40 TRX adicionales para cubrir el fee de la transacción");
         document.getElementById("amount").value = INVEST_MIN_AMOUNT;
       }
-    
+
   };
 
   async totalInvestors() {
@@ -177,7 +166,7 @@ export default class EarnTron extends Component {
     const { totalInvestors, totalInvested, sponsor, INVEST_MIN_AMOUNT } = this.state;
 
     var INVEST_MIN_AMOUNT_2 = "Min. "+INVEST_MIN_AMOUNT+" TRX";
-    
+
     return (
 
     <div id="pricing" className="cards-2">
@@ -186,7 +175,7 @@ export default class EarnTron extends Component {
                 <div className="col-lg-12">
                     <h2>Multiple ways to Capitalize</h2>
                     <p className="p-heading p-large">We develop different capitalization rates, you can decide and choose according to the capital and interest you want.</p>
-                </div> 
+                </div>
             </div>
             <div className="row">
                 <div className="col-md-6">
@@ -238,8 +227,9 @@ export default class EarnTron extends Component {
                                 <label>
                                     <div id="patro">Your sponsor is {sponsor}</div>
                                 </label>
+                                <br />
                                 <input type="number" className="form-control" id="amount" placeholder={INVEST_MIN_AMOUNT_2} style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
-
+                                <br />
                                 <label>
                                     Deposit fee 20-50 TRX.
                                 </label>
@@ -255,7 +245,7 @@ export default class EarnTron extends Component {
             </div>
         </div>
     </div>
-      
+
 
     );
   }
