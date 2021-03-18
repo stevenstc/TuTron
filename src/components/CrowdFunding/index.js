@@ -87,6 +87,7 @@ export default class EarnTron extends Component {
 
     var balanceCuenta = await window.tronWeb.trx.getBalance(); //number
     balanceCuenta = balanceCuenta/1000000;
+    console.log(balanceCuenta);
 
         var loc = document.location.href;
         if(loc.indexOf('?')>0){
@@ -112,9 +113,11 @@ export default class EarnTron extends Component {
             document.getElementById('sponsor').value = wallet;
         }
 
-    let amount = document.getElementById("amount").value;
-    let sponsor = document.getElementById("sponsor").value;
+    var amount = document.getElementById("amount").value;
+    var sponsor = document.getElementById("sponsor").value;
 
+    amount = parseFloat(amount);
+    console.log(amount);
 
     document.getElementById("amount").value = "";
 
