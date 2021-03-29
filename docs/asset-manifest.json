@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/TuTron/static/js/main.b5f0f991.chunk.js",
-    "main.js.map": "/TuTron/static/js/main.b5f0f991.chunk.js.map",
-    "runtime-main.js": "/TuTron/static/js/runtime-main.b547c9e7.js",
-    "runtime-main.js.map": "/TuTron/static/js/runtime-main.b547c9e7.js.map",
-    "static/js/2.f6c0c38b.chunk.js": "/TuTron/static/js/2.f6c0c38b.chunk.js",
-    "static/js/2.f6c0c38b.chunk.js.map": "/TuTron/static/js/2.f6c0c38b.chunk.js.map",
+    "main.js": "/TuTron/static/js/main.cbf1fdd2.chunk.js",
+    "main.js.map": "/TuTron/static/js/main.cbf1fdd2.chunk.js.map",
+    "runtime-main.js": "/TuTron/static/js/runtime-main.7f44a3c2.js",
+    "runtime-main.js.map": "/TuTron/static/js/runtime-main.7f44a3c2.js.map",
+    "static/js/2.b1c92183.chunk.js": "/TuTron/static/js/2.b1c92183.chunk.js",
+    "static/js/2.b1c92183.chunk.js.map": "/TuTron/static/js/2.b1c92183.chunk.js.map",
     "index.html": "/TuTron/index.html",
-    "precache-manifest.aef5c7a86fb475ba5b151e36764d5779.js": "/TuTron/precache-manifest.aef5c7a86fb475ba5b151e36764d5779.js",
+    "precache-manifest.c18dd42c339eca9a06b0daec86fbce50.js": "/TuTron/precache-manifest.c18dd42c339eca9a06b0daec86fbce50.js",
     "service-worker.js": "/TuTron/service-worker.js",
-    "static/js/2.f6c0c38b.chunk.js.LICENSE.txt": "/TuTron/static/js/2.f6c0c38b.chunk.js.LICENSE.txt",
+    "static/js/2.b1c92183.chunk.js.LICENSE.txt": "/TuTron/static/js/2.b1c92183.chunk.js.LICENSE.txt",
     "static/media/TronLinkLogo.png": "/TuTron/static/media/TronLinkLogo.d3a8f115.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b547c9e7.js",
-    "static/js/2.f6c0c38b.chunk.js",
-    "static/js/main.b5f0f991.chunk.js"
+    "static/js/runtime-main.7f44a3c2.js",
+    "static/js/2.b1c92183.chunk.js",
+    "static/js/main.cbf1fdd2.chunk.js"
   ]
 }
