@@ -144,6 +144,8 @@ export default class EarnTron extends Component {
 
   async totalInvestors() {
 
+    document.getElementById("linkContrato").innerHTML = "<a class='nav-link' target='_blank' rel='noopener noreferrer' href='https://tronscan.org/#/contract/"+contractAddress+"/code'>Troscan</a>";
+
     var totalUsers = await Utils.contract.totalUsers().call();
     //console.log(totalUsers);
 

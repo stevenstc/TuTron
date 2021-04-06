@@ -8,6 +8,19 @@ import TronLinkGuide from "../TronLinkGuide";
 
 const FOUNDATION_ADDRESS = "TWiWt5SEDzaEqS6kE5gandWMNfxR2B5xzg";
 
+var hoy = Date.now();
+
+console.log(hoy);
+
+var launch = 1618963200000;
+console.log(launch);
+
+if (hoy<launch) {
+  console.log(true);
+}else{
+  console.log(false);
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -100,6 +113,34 @@ class App extends Component {
   }
 
   render() {
+
+    var hoy = Date.now();
+
+    var launch = 1619031600000;
+
+    var event = new Date('April 21, 2021 19:00:00 GMT-0500');
+
+    event = ""+event;
+
+    //tiempo del lanzamiento 1619031600000
+    // tiempo de prueba 1617724130000
+
+
+    if ( hoy < launch ) return (
+      <>
+      <div className='row'>
+          <div className='col-xs-12 col-md-12 text-center'>
+              <h1>launch Day</h1>
+              <br />
+              <h1>
+                  {event}
+              </h1>
+          </div>
+      </div>
+
+      </>
+      );
+
     if (!this.state.tronWeb.installed) return (
       <>
         <div className="container">
@@ -118,19 +159,19 @@ class App extends Component {
 
     return (
       <>
-              
+
         <CrowdFunding />
-        <Oficina /> 
+        <Oficina />
 
       </>
-      
+
 
 
       );
 
   }
+
 }
 export default App;
 
 // {tWeb()}
-
