@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/TuTron/static/js/main.cbf1fdd2.chunk.js",
-    "main.js.map": "/TuTron/static/js/main.cbf1fdd2.chunk.js.map",
-    "runtime-main.js": "/TuTron/static/js/runtime-main.7f44a3c2.js",
-    "runtime-main.js.map": "/TuTron/static/js/runtime-main.7f44a3c2.js.map",
-    "static/js/2.b1c92183.chunk.js": "/TuTron/static/js/2.b1c92183.chunk.js",
-    "static/js/2.b1c92183.chunk.js.map": "/TuTron/static/js/2.b1c92183.chunk.js.map",
-    "index.html": "/TuTron/index.html",
-    "precache-manifest.c18dd42c339eca9a06b0daec86fbce50.js": "/TuTron/precache-manifest.c18dd42c339eca9a06b0daec86fbce50.js",
-    "service-worker.js": "/TuTron/service-worker.js",
-    "static/js/2.b1c92183.chunk.js.LICENSE.txt": "/TuTron/static/js/2.b1c92183.chunk.js.LICENSE.txt",
-    "static/media/TronLinkLogo.png": "/TuTron/static/media/TronLinkLogo.d3a8f115.png"
+    "main.js": "/static/js/main.126195ab.chunk.js",
+    "main.js.map": "/static/js/main.126195ab.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f17fca43.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f17fca43.js.map",
+    "static/js/2.6cf01b05.chunk.js": "/static/js/2.6cf01b05.chunk.js",
+    "static/js/2.6cf01b05.chunk.js.map": "/static/js/2.6cf01b05.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c59dd2d2c5892ca4595a3c5118ee51c5.js": "/precache-manifest.c59dd2d2c5892ca4595a3c5118ee51c5.js",
+    "service-worker.js": "/service-worker.js",
+    "static/js/2.6cf01b05.chunk.js.LICENSE.txt": "/static/js/2.6cf01b05.chunk.js.LICENSE.txt",
+    "static/media/TronLinkLogo.png": "/static/media/TronLinkLogo.d3a8f115.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.7f44a3c2.js",
-    "static/js/2.b1c92183.chunk.js",
-    "static/js/main.cbf1fdd2.chunk.js"
+    "static/js/runtime-main.f17fca43.js",
+    "static/js/2.6cf01b05.chunk.js",
+    "static/js/main.126195ab.chunk.js"
   ]
 }
