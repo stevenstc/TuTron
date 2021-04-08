@@ -8,7 +8,7 @@ contract youtron777 {
     uint256 constant public INVEST_MIN_AMOUNT = 200 trx;
     uint256 constant public BASE_PERCENT = 100;
     uint256 constant public RETI_MIN = 70 trx;
-    uint256[] public REFERRAL_PERCENTS = [600, 300, 100];
+    uint256[] public REFERRAL_PERCENTS = [600, 300, 100, 100];
     uint256 constant public PERCENTS_INCREMENT = 7;
     uint256 constant public PERCENTS_DIVIDER = 10000;
     uint256 constant public CONTRACT_BALANCE_STEP = 700000 trx;

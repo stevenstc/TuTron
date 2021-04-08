@@ -141,11 +141,12 @@ export default class EarnTron extends Component {
                                     <CopyToClipboard text={link}>
                                       <a href="#request" style={{'cursor': 'pointer', 'color': 'orange'}}>Copy link</a>
                                     </CopyToClipboard>]
-                                    <br /> 
+                                    <br />
                                     <br /> {link}
                                     <div id="reflink" style={{'fontWeight':'bold'}}></div>
                                     <br />1  Referral （5% de gain） - <b >{parseFloat((balanceRef*0.5).toFixed(6))}</b>
                                     <br />2  Referral （3% de gain） - <b >{parseFloat((balanceRef*0.3).toFixed(6))}</b>
+                                    <br />3 Referral （1% de gain） - <b >{parseFloat((balanceRef*0.1).toFixed(6))}</b>
                                     <br />3 Referral （1% de gain） - <b >{parseFloat((balanceRef*0.1).toFixed(6))}</b>
 
                                     <br />
