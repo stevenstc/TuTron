@@ -58,7 +58,7 @@ contract youtron777 {
         if (user.referrer != address(0)) {
 
             address upline = user.referrer;
-            for (uint256 i = 0; i < 3; i++) {
+            for (uint256 i = 0; i < 4; i++) {
                 if (upline != address(0)) {
                     uint256 amount = msg.value.mul(REFERRAL_PERCENTS[i]).div(PERCENTS_DIVIDER);
                     users[upline].bonus = users[upline].bonus.add(amount);
