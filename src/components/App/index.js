@@ -12,7 +12,7 @@ var hoy = Date.now();
 
 console.log(hoy);
 
-var launch = 1618963200000;
+var launch = 1619222400000;
 console.log(launch);
 
 if (hoy<launch) {
@@ -116,9 +116,9 @@ class App extends Component {
 
     var hoy = Date.now();
 
-    var launch = 1619031600000;
+    var launch = 1619222400000;
 
-    var event = new Date('April 21, 2021 19:00:00 GMT-0500');
+    var event = new Date('April 23, 2021 19:00:00 GMT-0500');
 
     event = ""+event;
 
