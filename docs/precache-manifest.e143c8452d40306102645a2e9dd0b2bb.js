@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "769ba8c5c39ffd6fb109c031dc2cbe01",
+    "revision": "36ede2a7bff7a56d8e8b94f51e7904cf",
     "url": "/TuTron/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/TuTron/static/js/2.b1c92183.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b3e433199f592f478e8c",
-    "url": "/TuTron/static/js/main.e879586d.chunk.js"
+    "revision": "962511e1ae5e37129f73",
+    "url": "/TuTron/static/js/main.c174e20e.chunk.js"
   },
   {
     "revision": "d046a301ca918b3d1561",

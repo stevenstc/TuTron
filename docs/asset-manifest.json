@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/TuTron/static/js/main.e879586d.chunk.js",
-    "main.js.map": "/TuTron/static/js/main.e879586d.chunk.js.map",
+    "main.js": "/TuTron/static/js/main.c174e20e.chunk.js",
+    "main.js.map": "/TuTron/static/js/main.c174e20e.chunk.js.map",
     "runtime-main.js": "/TuTron/static/js/runtime-main.7f44a3c2.js",
     "runtime-main.js.map": "/TuTron/static/js/runtime-main.7f44a3c2.js.map",
     "static/js/2.b1c92183.chunk.js": "/TuTron/static/js/2.b1c92183.chunk.js",
     "static/js/2.b1c92183.chunk.js.map": "/TuTron/static/js/2.b1c92183.chunk.js.map",
     "index.html": "/TuTron/index.html",
-    "precache-manifest.d8cdae99654fa62ab194554d0486c10e.js": "/TuTron/precache-manifest.d8cdae99654fa62ab194554d0486c10e.js",
+    "precache-manifest.e143c8452d40306102645a2e9dd0b2bb.js": "/TuTron/precache-manifest.e143c8452d40306102645a2e9dd0b2bb.js",
     "service-worker.js": "/TuTron/service-worker.js",
     "static/js/2.b1c92183.chunk.js.LICENSE.txt": "/TuTron/static/js/2.b1c92183.chunk.js.LICENSE.txt",
     "static/media/TronLinkLogo.png": "/TuTron/static/media/TronLinkLogo.d3a8f115.png"
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.7f44a3c2.js",
     "static/js/2.b1c92183.chunk.js",
-    "static/js/main.e879586d.chunk.js"
+    "static/js/main.c174e20e.chunk.js"
   ]
 }

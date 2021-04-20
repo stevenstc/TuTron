@@ -117,7 +117,7 @@ export default class EarnTron extends Component {
                                 <div className="col-md-6" style={{'border': 'dashed','borderRight': 'none','paddingTop': '30px','paddingBottom': '30px','fontSize': '1.2rem'}}>
                                     <h3><i className="fas fa-coins"></i>Dividends <br />{totalRef} TRX</h3>
                                 <p id="wal"></p>
-                                    <br />Earning of referrals
+                                    <br />Referral earnings
                                     <br /><b id="availableReferrerEarnings">{balanceRef}</b> TRX
                                     <br /><br />withdrawable <br />(earning of referrals included).
                                     <br /><b id="withdrawable">{my}</b> TRX

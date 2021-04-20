@@ -205,11 +205,11 @@ export default class EarnTron extends Component {
                         </div>
                         <div className="card-body">
                             <div className="card-title">INVESTIMENT</div>
-                            <div className="card-subtitle">earn everisdays</div>
+                            <div className="card-subtitle">wins every day</div>
                             <hr className="cell-divide-hr" />
                             <div className="price">
                                 <span className="value">+1%</span>
-                                <div className="frequency">Daily earning</div>
+                                <div className="frequency">of your capital</div>
                             </div>
                             <hr className="cell-divide-hr" />
                             <ul className="list-unstyled li-space-lg">
@@ -220,10 +220,10 @@ export default class EarnTron extends Component {
                                     <i className="fas fa-check"></i><div className="media-body">Total return +1% * days </div>
                                 </li>
                                 <li className="media">
-                                    <i className="fas fa-check"></i><div className="media-body">0.07% bonus 700,000  trx</div>
+                                    <i className="fas fa-check"></i><div className="media-body">0.07% bonus 700,000  TRX</div>
                                 </li>
                                 <li className="media">
-                                    <i className="fas fa-check"></i><div className="media-body">TRX minimum investment amount {INVEST_MIN_AMOUNT} trx</div>
+                                    <i className="fas fa-check"></i><div className="media-body">minimum investment amount 200 TRX</div>
                                 </li>
 
                             </ul>
