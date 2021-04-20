@@ -8,19 +8,6 @@ import TronLinkGuide from "../TronLinkGuide";
 
 const FOUNDATION_ADDRESS = "TWiWt5SEDzaEqS6kE5gandWMNfxR2B5xzg";
 
-var hoy = Date.now();
-
-console.log(hoy);
-
-var launch = 1619222400000;
-console.log(launch);
-
-if (hoy<launch) {
-  console.log(true);
-}else{
-  console.log(false);
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -116,7 +103,7 @@ class App extends Component {
 
     var hoy = Date.now();
 
-    var launch = 1617724130000;
+    var launch = 1619222400000;
 
     var event = new Date('April 23, 2021 19:00:00 GMT-0500');
 
