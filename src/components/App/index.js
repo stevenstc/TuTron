@@ -103,7 +103,7 @@ class App extends Component {
 
     var hoy = Date.now();
 
-    var launch = 1619222400000;
+    var launch = 1617724130000;
 
     var event = new Date('April 23, 2021 19:00:00 GMT-0500');
 
