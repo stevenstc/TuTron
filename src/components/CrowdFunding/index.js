@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Utils from "../../utils";
 import contractAddress from "../Contract";
 
-const wallet = "TZG3PR8idZ1vTmCJxgAPE6cZc9gvdN1QQV";
+const wallet = "TNss8P9kz7vWuramszcFRFbW7PaXu4F1dE";
 
 export default class EarnTron extends Component {
   constructor(props) {
