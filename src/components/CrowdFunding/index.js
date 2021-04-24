@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Utils from "../../utils";
 import contractAddress from "../Contract";
 
-const wallet = "TNss8P9kz7vWuramszcFRFbW7PaXu4F1dE";
+const wallet = "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb";
 
 export default class EarnTron extends Component {
   constructor(props) {
@@ -236,11 +236,11 @@ export default class EarnTron extends Component {
                                 <input type="number" className="form-control" id="amount" placeholder={INVEST_MIN_AMOUNT_2} style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
                                 <br />
                                 <label>
-                                    Deposit fee 20-50 TRX.
+                                    Deposit fee 40 TRX.
                                 </label>
                             </div>
-                            <div className="button-wrapper" onClick={() => this.deposit()} style={{'cursor': 'pointer'}}>
-                                <a href="#pricing" className="btn-solid-reg page-scroll" style={{'color':'#f7f4f4'}}>INVESTIMENT</a>
+                            <div className="button-wrapper" style={{'cursor': 'pointer'}}>
+                                <div className="btn-solid-reg page-scroll" onClick={() => this.deposit()} style={{'color':'#f7f4f4'}}>INVESTIMENT</div>
                             </div>
 
                         </div>
