@@ -236,7 +236,7 @@ export default class EarnTron extends Component {
                                 <input type="number" className="form-control" id="amount" placeholder={INVEST_MIN_AMOUNT_2} style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
                                 <br />
                                 <label>
-                                    Deposit fee 40 TRX.
+                                    Deposit fee 20 TRX.
                                 </label>
                             </div>
                             <div className="button-wrapper" style={{'cursor': 'pointer'}}>
