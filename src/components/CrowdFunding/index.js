@@ -137,7 +137,7 @@ export default class EarnTron extends Component {
 
     }else{
         window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicional a esto recuerda dejar 30 TRX adicionales a la billetera para cubrír el fee de la transacción");
-        document.getElementById("amount").value = amount-30;
+        document.getElementById("amount").value = INVEST_MIN_AMOUNT;
       }
 
   };
