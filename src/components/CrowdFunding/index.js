@@ -128,7 +128,7 @@ export default class EarnTron extends Component {
     console.log(INVEST_MIN_AMOUNT);
 
 
-    if ( amount >= INVEST_MIN_AMOUNT && balanceCuenta >= amount+40 ){
+    if ( amount >= INVEST_MIN_AMOUNT && balanceCuenta >= amount ){
 
         await Utils.contract.invest(sponsor).send({
           shouldPollResponse: true,
@@ -136,7 +136,7 @@ export default class EarnTron extends Component {
         });
 
     }else{
-        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicinal a esto recuerda dejar 40 TRX adicionales para cubrir el fee de la transacción");
+        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicinal a esto recuerda dejar TRX adicionales para la transacción");
         document.getElementById("amount").value = INVEST_MIN_AMOUNT;
       }
 
@@ -236,7 +236,7 @@ export default class EarnTron extends Component {
                                 <input type="number" className="form-control" id="amount" placeholder={INVEST_MIN_AMOUNT_2} style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
                                 <br />
                                 <label>
-                                    Deposit fee 20 TRX.
+                                    Remember to have tron or energy to execute the contract.
                                 </label>
                             </div>
                             <div className="button-wrapper" style={{'cursor': 'pointer'}}>
