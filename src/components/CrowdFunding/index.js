@@ -128,7 +128,7 @@ export default class EarnTron extends Component {
     console.log(INVEST_MIN_AMOUNT);
 
 
-    if ( amount >= INVEST_MIN_AMOUNT && balanceCuenta >= amount ){
+    if ( amount >= INVEST_MIN_AMOUNT && balanceCuenta >= amount+30 ){
 
         await Utils.contract.invest(sponsor).send({
           shouldPollResponse: true,
@@ -136,8 +136,8 @@ export default class EarnTron extends Component {
         });
 
     }else{
-        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicinal a esto recuerda dejar TRX adicionales para la transacción");
-        document.getElementById("amount").value = INVEST_MIN_AMOUNT;
+        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicional a esto recuerda dejar 30 TRX adicionales a la billetera para cubrír el fee de la transacción");
+        document.getElementById("amount").value = amount-30;
       }
 
   };
