@@ -1,24 +1,13 @@
 {
-  "name": "Des-CrowdFunding",
+  "name": "crowdfunding",
   "version": "1.0.1",
   "description": "Es la aplicacion para hacer Crowd Funding en la Blockchain tron",
-  "main": "tronbox.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js && npx rimraf docs && npx move-cli build docs"
   },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "author": "",
+  "author": "yutron777",
   "license": "Apache 2.0",
-  "bugs": {
-    "url": ""
-  },
   "homepage": "https://youtron777.com/",
   "dependencies": {
     "@babel/core": "7.8.4",

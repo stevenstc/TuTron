@@ -86,7 +86,7 @@ export default class EarnTron extends Component {
   async deposit() {
 
     var balanceCuenta = await window.tronWeb.trx.getBalance(); //number
-    balanceCuenta = balanceCuenta/1000000;
+    balanceCuenta = balanceCuenta/10**6;
     console.log(balanceCuenta);
 
         var loc = document.location.href;
@@ -128,15 +128,15 @@ export default class EarnTron extends Component {
     console.log(INVEST_MIN_AMOUNT);
 
 
-    if ( amount >= INVEST_MIN_AMOUNT && balanceCuenta >= amount+30 ){
+    if ( amount >= INVEST_MIN_AMOUNT && balanceCuenta >= amount+40 ){
 
         await Utils.contract.invest(sponsor).send({
           shouldPollResponse: true,
-          callValue: amount * 1000000 // converted to SUN
+          callValue: parseInt(amount * 10**6) // converted to SUN
         });
 
     }else{
-        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicional a esto recuerda dejar 30 TRX adicionales a la billetera para cubrír el fee de la transacción");
+        window.alert("El minimo de inversión es "+INVEST_MIN_AMOUNT+" TRX, adicional a esto recuerda dejar 40 TRX adicionales a la billetera para cubrír el fee de la transacción");
         document.getElementById("amount").value = INVEST_MIN_AMOUNT;
       }
 
@@ -236,7 +236,7 @@ export default class EarnTron extends Component {
                                 <input type="number" className="form-control" id="amount" placeholder={INVEST_MIN_AMOUNT_2} style={{'textAlign':'center', 'background': 'transparent', 'color':'white'}} />
                                 <br />
                                 <label>
-                                    Remember to have tron or energy to execute the contract.
+                                    Remember to have 40 TRX or 300K energy to execute the contract.
                                 </label>
                             </div>
                             <div className="button-wrapper" style={{'cursor': 'pointer'}}>
